@@ -1,0 +1,552 @@
+<html>
+<head>
+<title>Spaced out</title>
+<style>
+#timer { 
+    color: #880000;
+    width: 100%;
+    display: block;
+    background: white;
+    font-size: 10px;
+    text-align:center;
+    height: 15px;
+}
+#header {
+    background-color: #5882FA;
+    color: maroon;
+    width: 750px;
+    text-align:center;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top:7px;
+    padding-bottom: 8px;
+}
+#show {
+    line-height:30px;
+    background-color:#ffffff;
+    height:450px;
+    width:600px;
+    padding-left: 10px;
+    float:left;
+}
+#hide {
+    display: none;
+}
+#dashboard {
+    height: 450px;
+    width:200px;
+    float:left;
+}
+#footer {
+    background-color: #5882FA;
+    border: solid #0000AA thin;
+    width: 800px;
+    height: 24px;
+    color: maroon;
+    clear:both;
+    text-align:center;
+    padding-top: 2px;
+}
+problem_stem {
+    display: block; 
+    height:50px; 
+    background: #c0c0c0;
+}
+ps {
+    font-size: 13px; 
+    color: maroon;
+    font-family: Arial; 
+    font-style: Italic;
+   display:block; 
+   width: 90%; 
+    border-bottom: solid thick #c0c0c0; 
+    padding-bottom: 2px;
+}
+pd {
+    font-size: 13px; 
+    font-family: Arial; 
+    display:block; 
+    padding-bottom: 1px;
+}
+button {
+    display: inline-block; 
+    background: #c2e8ee; 
+    width: 40px; 
+    height: 30px; 
+    border: none; 
+    margin: 1px;
+}
+distractor {
+    display: inline-block; 
+    background: #fffff; 
+    font-family: Arial; 
+    border-bottom: solid thin #cccccc; 
+    width:500px; 
+    padding-left: 5px; 
+    padding-bottom: 3px;
+}
+</style>
+
+<script src = "micro_concepts.js"></script>
+<script src = "micro_definitions.js"></script>
+<script src = "concept.js"></script>
+ <script src = "definition.js"></script>
+ <script src = "category.js"></script>
+ <script src = "group.js"></script>
+
+<script>
+    // document.getElementById("xx").style.color="blue";
+     var san="";
+     var xr = 0;
+     var xn = 0;
+     var xp = 0;
+     var xq = 0;
+     var xk = 1.0;
+     //
+     var count = Math.round(Math.random()*100);
+     var k = Math.round(Math.random()*100);
+     var eof = 1024;
+     var text = "";
+     // 
+      var maxWidth = 300;
+      var lineHeight = 20;
+      var x = 30;
+      var y = 10;
+      var cname="spaced";
+      var flag = -1;
+      var flag1 = -1;
+      var flag2 = 1;
+      var attempts = -1;
+      var minute = 0;
+      var offset = 60
+      var second = 0;
+      var diff = 0;
+      var x4 = 0;
+      taxonomy_choice = "economics";
+      var day = ["S","M","T","W","T","F","S"];
+     //
+     var month = ["January","February","March","April","May","June",
+     "July","August", "September","October","November","December"];
+//
+var datx = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+//
+     var lbl = [" a)"," b)"," c)"," d)"," e)"];
+     var scramble =[[0,1,2,3],[1,2,3,0],[2,3,0,1],[3,0,1,2],[1,0,2,3],[1,0,3,2],[2,1,0,3],[2,1,3,0],[3,2,0,1],[3,2,1,0]];
+     var dx = ["","","","","",""];
+     var cx = ["","","","","",""];
+     var taxonomy = "";
+     var correct = [0,3,2,1,1,1,2,3,2,3];
+     var total_correct = 0;
+     var total_incorrect = 0;
+     var distractor_count = 0;
+     //
+     var item = [];
+     var choice = [];
+     var outcome = [];
+     var assess_date = [];
+//
+// ------------------------------------------------------------------
+//
+function checkIt(bx) {
+    //
+    // answer is correct...
+    //
+    if (document.getElementById('dd0').checked) {
+        total_correct +=1;
+        choice[attempts] = dx[0];
+        document.getElementById("result").innerHTML = "<span style = \"color: #00bb00;\">Correct</span><br/><pd> (Total correct: "+total_correct+", Total incorrect: "+total_incorrect+")</pd>";
+        // I know it? (yes / else: no)
+        if (bx > 0) {
+            xr=xr+1;
+            outcome[attempts] = "A";
+       }
+       else {
+            xp = xp+1;
+           outcome[attempts] = "B";
+       }
+    }
+    // 
+    // anwer is incorrect...
+    //
+    else {
+       if (document.getElementById('dd1').checked) {
+          choice[attempts] = dx[1];
+          document.getElementById("feedback").innerHTML = "<span style = \"color: red; font-weight: bold\">Your choice (incorrect): "+dx[1]+"</span>  <pd>"+cx[1]+"</pd>";
+       }
+       if (document.getElementById('dd2').checked) {
+           choice[attempts] = dx[2];
+           document.getElementById("feedback").innerHTML = "<span style = \"color: red; font-weight: bold\">Your choice (incorrect): </b>"+dx[2]+"  </span><pd>"+cx[2]+"</pd>";
+      }
+      if (document.getElementById('dd3').checked) {
+          choice[attempts] = dx[3];
+          document.getElementById("feedback").innerHTML = "<span style = \"color: red; font-weight: bold\">Your choice (incorrect): </b>"+dx[3]+"  </span><pd>"+cx[3]+"</pd>";
+     }
+  if (bx > 0) {
+       xq=xq+1;
+       outcome[attempts] = "C";
+  }
+  else {
+       xn = xn+1;
+      outcome[attempts] = "D";
+  }
+  total_incorrect +=1;
+  // document.getElementById("result").innerHTML = "<span style = \"color: #dd0000;\">Incorrect</span><br/><pd> (Total correct: "+total_correct+", Total incorrect: "+total_incorrect+")</pd>";
+  }
+  //
+  draw();
+  // next();
+}
+//
+// ------------------------------------------------------------------------
+//
+function next() {
+  //
+  // after 10 questions (attempts > 10) double-back through the list choice[i], outcome[i]
+  // and repeat certain questions based on 'outocome'
+  //
+  distractor_count = 1;
+  // k = k+1;
+  k = Math.round(Math.random()*100);
+  if(k<cn.length) {
+      taxonomy = ct[k][1];
+      // taxonomy = taxonomy_choice;
+      document.getElementById("problem_stem").innerHTML = "<ps><b>"+taxonomy+":</b> "+def[k][1]+"</ps>";
+      // dx[0] = "* "+taxonomy+": "+cn[k][1];
+      dx[0] = "* "+cn[k][1];
+  }
+  //
+  for (j=1;j<cn.length;j++) { 
+      if (ct[j][1] == taxonomy && distractor_count < 4 && j != k) {
+         // dx[distractor_count] = taxonomy+": "+cn[j][1];
+         dx[distractor_count] = ""+cn[j][1];
+         cx[distractor_count] = def[j][1];
+         distractor_count = distractor_count + 1;
+      }
+  }
+  //
+  var ns = Math.round(Math.random()*8);
+  for (i=0;i<4;i++) {
+     document.getElementById("distractor"+i).innerHTML ="<button><input type = \"radio\" id =\"dd"+scramble[ns][i]+"\" name=\"distractor_x\" value = \""+scramble[ns][i]+"\" /></button><distractor>"+lbl[i]+" "+dx[scramble[ns][i]]+"</distractor><br/>";
+  }  
+  document.getElementById("result").innerHTML = "<i>(select an answer and press 'I know it!, 'I don't know it.')</i>";
+  document.getElementById("feedback").innerHTML = "";
+      // 
+      // reset the flag
+      //
+      flag= (-1);
+      item[attempts] = k;
+      var today2=new Date();
+      assess_date[attempts] = today2;
+      attempts = attempts + 1;
+      draw();
+}
+//
+// ------------------------------------------------------------------
+//
+function do1(xa) {
+   taxonomy_choice = xa;
+}
+function clearx() {
+    xr = 5.0;
+    xn = 1.0;
+    xk = 1.0;
+}
+//
+// timer
+//
+  if (flag < 0) {
+       var start = new Date();
+       var minute = 0;
+    }
+function startTime() {
+    flag1 = 1;
+    var today=new Date();
+    var dy = today.getDay();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    var end = new Date();
+    var elapsed = Math.round((end.getTime() - start.getTime())/1000);
+    if (minute > 0) {
+        second = elapsed-(offset-60);
+    }
+    else {
+        second = elapsed;
+    }
+    if (elapsed == offset) {
+        minute = minute+1;
+        offset = offset+60;
+        second=0;
+   }
+   //
+   m = checkTime(m);
+   s = checkTime(s);
+   document.getElementById('timer').innerHTML = ""+today+" Elapsed time: "+minute+" m : "+second+" sec.";
+   var t = setTimeout(function(){startTime()},500);
+}
+//
+function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+       return i;
+}
+//
+function results() {
+  j1window = window.open('', 'ay', 'height=400, width=600, toolbar=no, scrollbars=yes');
+  for (m = 0 ; m < attempts;m++) {
+     j1window.document.write("{\"item number\": \""+item[m]+"\",\"date\":\""+assess_date[m]+"\",\"outcome\":\""+outcome[m]+"\",\"selection\":\""+choice[m]+"\"}<br/>");
+  }
+}
+//
+//  calendar -- dashboard
+//
+function draw() {
+    var canvas = document.getElementById('ff');  
+            	if (canvas.getContext){  
+                	    var gS2 = canvas.getContext('2d');  
+            	}  
+	//
+	gS2.fillStyle = "rgb(255,255,255)";
+	gS2.fillRect(0,0,200,450);
+	// gS2.fillStyle = "rgba(62,180,90,0.1)";
+	gS2.fillStyle = "rgba(62,90,181,0.2)";
+                    gS2.fillRect(1,2,397,446);
+                    //
+                    var today=new Date();
+                    var dy = today.getDay();
+                    var cd = today.getDate();
+                    var dax = cd-dy;
+	//
+	// calendar
+	//
+	gS2.fillStyle = "rgb(0,0,0)";
+	gS2.font = "bold 11px Arial";
+	gS2.fillText(""+month[today.getMonth()], 85,11);
+                    gS2.fillStyle = "rgb(255,255,255)";
+	gS2.fillRect(16,12,179,99);
+	gS2.fillStyle = "rgba(0,0,164,0.6)";
+	gS2.fillRect(18,14,175,20);
+	gS2.fillStyle = "rgb(255,255,255)";
+	gS2.font = "bold 12px Arial";
+	for (i=0;i<7;i++) {
+	    gS2.fillText(""+day[i],25+i*25,28);
+	}
+	//
+	// where on the calendar ?
+	//
+	// --------------------------------------------------
+	gS2.font = "10px Arial";
+	for (j=1;j<4;j++) {
+	    gS2.fillStyle="rgb(164,164,164)";
+ 	    for (i=0;i<7;i++) {
+	       gS2.fillRect(18+i*25,10+j*25,25,25);
+	    }
+	   //
+	   gS2.fillStyle="rgb(255,255,255)";
+ 	   for (i=0;i<7;i++) {
+	     if (i==dy && j ==1) {
+	        gS2.fillStyle = "rgb(225,225,240)";
+	     }
+	     else {
+	        gS2.fillStyle="rgb(255,255,255)";
+	     }
+	     gS2.fillRect(19+i*25,11+j*25,23,23);
+	     gS2.fillStyle="rgb(0,0,0)";
+                         gS2.fillText(""+dax,20+i*25,19+j*25);
+	     dax = dax + 1;
+	     if (dax > 31) {
+	        dax = 1;
+	     }
+	   }
+	}
+                    // -------------------------------------------------------------
+	//
+	// progress meters
+	//
+                    gS2.font = "bold 11px Arial";
+	gS2.fillStyle = "rgb(0,0,0)";
+	gS2.fillText("Today's progress "+attempts+" items.", 30,126);
+	//
+	gS2.fillStyle="rgb(164,164,164)";
+ 	for (i=0;i<18;i++) {
+	  gS2.fillRect(10+i*10,160,9,12);
+	}
+	//
+	for (i=0;i<18;i++) {
+	  gS2.fillRect(10+i*10,190,9,12);
+	}
+	//
+                    for (i=0;i<18;i++) {
+	  gS2.fillRect(10+i*10,220,9,12);
+	}
+	//
+	for (i=0;i<18;i++) {
+	  gS2.fillRect(10+i*10,250,9,12);
+	}
+	//
+                    gS2.fillStyle="rgb(255,255,255)";
+	for (i=0;i<18;i++) {
+	  gS2.fillRect(11+i*10,161,7,10);
+	}
+	//
+	for (i=0;i<18;i++) {
+	  gS2.fillRect(11+i*10,191,7,10);
+	}
+                    //
+                    for (i=0;i<18;i++) {
+	  gS2.fillRect(11+i*10,221,7,10);
+	}
+	//
+                    for (i=0;i<18;i++) {
+	  gS2.fillRect(11+i*10,251,7,10);
+	}
+	//
+                    // correct
+                    //
+	gS2.fillStyle="rgba(0,164,0,0.6)";
+	for (i=0;i<xr;i++) {
+	  gS2.fillRect(11+i*10,161,6,9);
+	}
+                    //
+                    gS2.fillStyle="rgba(164,0,164,0.6)";
+	for (i=0;i<xq;i++) {
+	  gS2.fillRect(11+i*10,191,6,9);
+	}
+	//
+                    // future study (correct) today, +1, +4
+                    //
+                    for (i=0;i<xr;i++) {
+	   gS2.fillStyle="rgba(0,164,0,0.6)";
+                       gS2.fillRect(18+dy*25+i*2,45,2,4);
+	   gS2.fillStyle="rgba(0,0,164,0.6)";
+	   gS2.fillRect(18+(dy+1)*25+i*2,45,2,4);
+	   //
+                       if ((dy+4)*25 < 168) {
+	       gS2.fillRect(18+(dy+2)*25+i*2,45,2,4);
+                       }
+                       else {
+                            gS2.fillRect(18+(dy-3)*25+i*2,70,2,4);
+                       }
+	}
+	//
+                    // incorrect
+                    //
+	gS2.fillStyle="rgba(0,0,225,0.6)";
+	for (i=0;i<xp;i++) {
+	   gS2.fillRect(11+i*10,221,6,9);
+	}
+                    //
+                    gS2.fillStyle="rgba(225,0,0,0.6)";
+	for (i=0;i<xn;i++) {
+	   gS2.fillRect(11+i*10,251,6,9);
+	}
+                    gS2.fillStyle="rgba(225,0,0,0.6)";
+	for (i=0;i<xn;i++) {
+                       gS2.fillRect(18+(dy)*25+i*2,50,2,4);
+                       gS2.fillRect(18+(dy+1)*25+i*2,50,2,4);
+                       if ((dy+4)*25 < 168) {
+	       gS2.fillRect(18+(dy+2)*25+i*2,50,2,4);
+                       }
+                       else {
+                            gS2.fillRect(18+(dy-3)*25+i*2,75,2,4);
+                       }
+                       //
+                       if ((dy+6)*25 < 168) {
+	       gS2.fillRect(18+(dy+2)*25+i*2,50,2,4);
+                       }
+                       else {
+                            gS2.fillRect(18+(dy-1)*25+i*2,75,2,4);
+                       }
+	}
+	//
+	gS2.font = "bold 11px Arial";
+	gS2.fillStyle = "rgba(0,164,0,0.8)";
+	gS2.fillText("I know it -- correct",12,157);
+	//
+	gS2.fillStyle = "rgb(0,0,0)";
+	gS2.fillText("I know it -- incorrect",12,187);
+                    //
+                    gS2.fillStyle = "rgb(0,0,0)";
+	gS2.fillText("I didn't know it -- correct",12,217);
+                    //
+                    gS2.fillStyle = "rgba(225,0,0,0.8)";
+	gS2.fillText("I didn't know it -- incorrect",12,247);
+                    //
+                   gS2.fillStyle = "rgb(0,0,0)";
+                    for (m = 0; m < attempts;m++) {
+                       gS2.fillText("#: "+item[m]+", "+outcome[m]+", "+"Choice: "+choice[m],10,280+m*15);
+                   }
+}
+//
+</script>
+</head>
+
+<body onload =" draw();next();">  
+<font face="Arial" size = "-1">
+<div id="header">
+   <div id="timer"></div>
+</div>
+
+<div id="dashboard">
+    <canvas id="ff" width="200" height="450" bgcolor="white" ></canvas>
+</div>
+
+<div id="show">
+   <p id="problem_stem"></p>
+   <form name="mc">
+   <span id= "distractor0"></span>
+   <span id= "distractor1"></span>
+   <span id= "distractor2"></span>
+   <span id= "distractor3"></span>
+   <p id = "result"></p>
+   <p id = "feedback"></p>
+   </form>
+</div>
+
+<div id = "footer">
+       <input type="button" value="Results" onclick="results();">&nbsp;&nbsp;
+      <input type="button" value="Start" onclick="startTime();">&nbsp;&nbsp;
+     <select name="ans" height="25" onchange = "do1(this.form.ans.value)">
+      <option value="zqzq">Category</option>
+     <script>
+     var cx = [];
+     var cy = [];
+     n = 0;
+     for (i=0;i<ct.length-1;i++) {
+     cx[i] = ct[i][1];
+     }
+     cx.sort();
+     for (i=0;i<cx.length;i++) {
+        if (cx[i] != cx[i+1]) {
+              cy[n] = cx[i];
+              n = n+1;
+         }
+      }
+      for (i=0;i<cy.length;i++) {
+           document.write("<option value=\""+cy[i]+"\">"+cy[i]+"</option>");
+      }
+      </script>
+      </select>
+      <input type="button" value="I didn't know it" onclick="checkIt(-1); this.style.color='#ffffff'; this.style.backgroundColor = '#de0000'"/>
+      <input type="button" value="I know it." onclick ="checkIt(1); this.style.color='#ffffff'; this.style.backgroundColor = '#00de00'"/>
+      <input type="button" name="xx" value = "Next" onmouseover="this.style.color='#000088'; this.style.backgroundColor = '#dedede'"
+      onclick="next(); this.style.color='#ffffff'; this.style.backgroundColor = '#0000de'"/>
+</div>   
+
+</body>  
+</html>
